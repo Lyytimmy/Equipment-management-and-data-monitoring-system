@@ -1,0 +1,31 @@
+server:
+  port: 9016
+spring:
+  mail:
+    host: smtp.qq.com #邮件服务器
+    username: 2500673659@qq.com #发送邮件邮箱地址
+    password: dumeaikkhwqwdjgh #授权码
+    port: 587 #端口号465-smtps或587-smtp
+    default-encoding: UTF-8
+    protocol: smtp
+    smtp:
+      connectiontimeout:
+dubbo:
+  application:
+    # 服务名称，保持唯一
+    name: email-service-provider
+    # zookeeper地址，用于向其注册服务
+  registry:
+    protocol: zookeeper
+    address: zookeeper://127.0.0.1:2181
+    #address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2182,127.0.0.1:2183
+  protocol:
+    name: dubbo
+    port: 20886
+  scan:
+    base-packages: com.example.ServiceImp
+  provider:
+    delay: -1
+    timeout: 900000
+    retries: 0
+

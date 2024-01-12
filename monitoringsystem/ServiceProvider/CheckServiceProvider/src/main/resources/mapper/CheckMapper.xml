@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.CheckMapper">
+    <resultMap id="recordResultMap" type="com.example.Pojo.Record">
+        <id property="id" column="id" />
+        <result property="componentId" column="componentId" />
+        <result property="workstationId" column="workstationId" />
+        <result property="componentType" column="componentType" />
+        <result property="date" column="date" />
+        <result property="time" column="time" />
+        <result property="state" column="state" />
+    </resultMap>
+
+    <select id="list1" resultMap="recordResultMap">
+        SELECT * FROM step1
+        <where>
+            isDeleted = 0 AND state = 3
+            <if test="componentType != null"> AND componentType=#{componentType} </if>
+            <if test="workstationId != null"> AND workstationId=#{workstationId} </if>
+            <if test="date != null"> AND date=#{date} </if>
+            <if test="time != null"> AND time=#{time} </if>
+        </where>
+    </select>
+
+    <select id="list2" resultMap="recordResultMap">
+        SELECT * FROM step2
+        <where>
+            isDeleted = 0 AND state = 3
+            <if test="componentType != null"> AND componentType=#{componentType} </if>
+            <if test="workstationId != null"> AND workstationId=#{workstationId} </if>
+            <if test="date != null"> AND date=#{date} </if>
+            <if test="time != null"> AND time=#{time} </if>
+        </where>
+    </select>
+
+</mapper>

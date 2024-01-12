@@ -1,0 +1,18 @@
+server:
+  port: 9013
+dubbo:
+  application:
+    name: Record-api-A
+  registry:
+    protocol: zookeeper
+    address: zookeeper://127.0.0.1:2181
+    #address: zookeeper://127.0.0.1:2181?backup=127.0.0.1:2182,127.0.0.1:2183
+  scan:
+    base-packages: com.example.api
+logging:
+  level:
+    com.zr.book.mapper: debug
+    root: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  path: D://log//Logging.log

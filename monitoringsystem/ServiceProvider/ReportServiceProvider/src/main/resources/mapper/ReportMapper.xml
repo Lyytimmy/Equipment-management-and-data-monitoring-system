@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.ReportMapper">
+    <resultMap id="recordResultMap" type="com.example.Pojo.Record">
+        <id property="id" column="id" />
+        <result property="componentId" column="componentId" />
+        <result property="workstationId" column="workstationId" />
+        <result property="componentType" column="componentType" />
+        <result property="date" column="date" />
+        <result property="time" column="time" />
+        <result property="state" column="state" />
+    </resultMap>
+    <select id="checkById1" resultMap="recordResultMap">
+        SELECT * FROM step1
+        WHERE isDeleted=0 AND componentId=#{componentId}
+    </select>
+    <select id="checkById2" resultMap="recordResultMap">
+        SELECT * FROM step2
+        WHERE isDeleted=0 AND componentId=#{componentId}
+    </select>
+
+</mapper>
