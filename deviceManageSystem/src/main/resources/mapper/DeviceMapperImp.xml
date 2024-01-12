@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.devicemanagesystem.mapper.DeviceMapper">
+    <insert id="add">
+        INSERT INTO deviceinf (workplaceName, providerName, state)
+        VALUES (#{workplaceName}, #{providerName},  #{state})
+    </insert>
+    <update id="deleteById">
+        UPDATE deviceinf
+        set isDeleted=1
+        WHERE deviceId=#{deviceId} AND isDeleted=0
+    </update>
+    <update id="update">
+        UPDATE deviceinf
+        SET workplaceName=#{workplaceName}, providerName=#{providerName}, state=#{state}
+        WHERE deviceId=#{deviceId} AND isDeleted=0
+    </update>
+    <select id="selectById">
+        SELECT * FROM deviceinf
+        WHERE deviceId=#{deviceId} AND isDeleted=0
+    </select>
+    <select id="list">
+        SELECT * FROM deviceinf
+        <where>
+            isDeleted=0
+            <if test="deviceId != null">
+                AND deviceId=#{deviceId}
+            </if>
+            <if test="workplaceName != null">
+                AND workplaceName=#{workplaceName}
+            </if>
+            <if test="providerName != null">
+                AND providerName=#{providerName}
+            </if>
+            <if test="state != null">
+                AND state=#{state}
+            </if>
+        </where>
+    </select>
+</mapper>
